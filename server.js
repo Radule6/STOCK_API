@@ -8,7 +8,7 @@ const nasdaqStocks = [
     "SBUX", "GILD", "PYPL", "AMGN", "BIIB", "AMAT","REGN", "CMCSA","MU", "ILMN", 
     "KHC","AMD","COST","PEP","QCOM","TXN","HON","ADI","VRTX","PANW" ];
 
-app.get('/', (req, res) => {
+app.get('/', async(req, res) => {
     res.send('Hello World!')
      stocks = await getStocksData(nasdaqStocks)
         .then((stocksData) => {
@@ -21,7 +21,7 @@ app.get('/', (req, res) => {
 
     }
 );
-})
+
 
 app.listen(port, async () => {
     console.log(`Example app listening on port ${port}`);
