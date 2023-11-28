@@ -10,6 +10,17 @@ const nasdaqStocks = [
 
 app.get('/', (req, res) => {
     res.send('Hello World!')
+     stocks = await getStocksData(nasdaqStocks)
+        .then((stocksData) => {
+            return stocksData
+        })
+        .catch((error) => {
+            console.error('Error fetching stock data:', error.message);
+        });
+        console.log("Stocks are done loading")
+
+    }
+);
 })
 
 app.listen(port, async () => {
