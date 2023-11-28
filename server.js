@@ -4,10 +4,9 @@ const port = 3000
 const { getStocksData,getStockData } = require("./stock");
 let stocks = {}
 const nasdaqStocks = [
-    "AAPL", "AMZN", "MSFT", "GOOGL", "META", "TSLA", "NVDA", "INTC", "CSCO", "ADBE",
-    "NFLX", "SBUX", "AVGO", "GILD", "PYPL", "AMGN", "BIIB", "AMAT", "ZM", "MRNA",
-    "REGN", "CMCSA", "INTC", "MU", "ASML", "JD", "BIDU", "ILMN", "KHC", "PDD"
-];
+    "AAPL", "AMZN", "MSFT", "GOOGL", "META", "NVDA", "INTC", "CSCO", "ADBE","NFLX",
+    "SBUX", "GILD", "PYPL", "AMGN", "BIIB", "AMAT","REGN", "CMCSA","MU", "ILMN", 
+    "KHC","AMD","COST","PEP","QCOM","TXN","HON","ADI","VRTX","PANW" ];
 
 app.get('/', (req, res) => {
     res.send('Hello World!')
@@ -15,7 +14,7 @@ app.get('/', (req, res) => {
 
 app.listen(port, async () => {
     console.log(`Example app listening on port ${port}`);
-    `stocks = await getStocksData(nasdaqStocks)
+    stocks = await getStocksData(nasdaqStocks)
         .then((stocksData) => {
             return stocksData
         })
@@ -23,11 +22,10 @@ app.listen(port, async () => {
             console.error('Error fetching stock data:', error.message);
         });
         console.log("Stocks are done loading")
-`
+
     }
 );
 
-app.get('/api/hello', async(req, res) => {
-    const stock = await getStockData("AAPL")
-    res.json(stock);
+app.get('/api/getStocks', async(req, res) => {
+    res.json(stocks)
 });

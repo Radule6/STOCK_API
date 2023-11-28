@@ -1,12 +1,5 @@
 const axios = require('axios');
 const cheerio = require('cheerio');
-const { privateDecrypt } = require('crypto');
-const fs = require('fs')
-
-
-
-
-
 
 async function getStocksData(array) {
   const stocks = await Promise.all(array.map(item => getStockData(item)));
@@ -22,22 +15,23 @@ async function getStockData(symbol){
       return $(this).attr('class') === 'YMlKec fxKbKc';
     }).text();
 
-    const previousClosePrice = $('.P6K39c').eq(0).text();
-    const dayRange = $('.P6K39c').eq(1).text();
-    const yearRange = $('.P6K39c').eq(2).text();
-    const marketCap = $('.P6K39c').eq(3).text();
-    const avgVolume = $('.P6K39c').eq(4).text();
-    const peRatio = $('.P6K39c').eq(5).text();
-    const dividendYield = $('.P6K39c').eq(6).text();  
-    const primaryExchange = $('.P6K39c').eq(7).text();
-    const about = $('.bLLb2d').text()
-    const ceo = $('a.tBHE4e').eq(1).text();
-    const founded = $('.P6K39c').eq(9).text();
-    const headquarters = $('.P6K39c').eq(10).text();
-    const website =$('.P6K39c').eq(11).text();
-    const name =$('.zzDege').text();
-    const test= $("div.P6K39c").eq(8).text()
-    console.log($('.P6K39c').text());
+    let previousClosePrice = $('.P6K39c').eq(0).text();
+    let dayRange = $('.P6K39c').eq(1).text();
+    let yearRange = $('.P6K39c').eq(2).text();
+    let marketCap = $('.P6K39c').eq(3).text();
+    let avgVolume = $('.P6K39c').eq(4).text();
+    let peRatio = $('.P6K39c').eq(5).text();
+    let dividendYield = $('.P6K39c').eq(6).text();  
+    let primaryExchange = $('.P6K39c').eq(7).text();
+    let cdpClimateChangeScore = $('.P6K39c').eq(8).text();
+    let about = $('.bLLb2d').text()
+
+
+    let ceo = $('a.tBHE4e').eq(1).text();
+    let founded = $('.P6K39c').eq(10).text();
+    let headquarters = $('.P6K39c').eq(11).text();
+    let website =$('a.tBHE4e').last().text();
+    let name =$('.zzDege').text();
 
     const stock = {
       name,
@@ -55,7 +49,8 @@ async function getStockData(symbol){
       avgVolume,
       peRatio,
       dividendYield,
-      primaryExchange
+      primaryExchange,
+      cdpClimateChangeScore
     }
     return stock
   }catch(error){
