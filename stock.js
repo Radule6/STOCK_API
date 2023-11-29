@@ -13,7 +13,7 @@ async function getStockData(symbol){
     const $ = cheerio.load(response.data);
     const preMarketPrice = $('div').filter(function() {
       return $(this).attr('class') === 'YMlKec fxKbKc';
-    }).text();
+    }).eq(0).text();
 
     let previousClosePrice = $('.P6K39c').eq(0).text();
     let dayRange = $('.P6K39c').eq(1).text();
