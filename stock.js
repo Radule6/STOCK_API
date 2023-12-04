@@ -23,7 +23,12 @@ async function getStockData(symbol){
     let peRatio = $('.P6K39c').eq(5).text();
     let dividendYield = $('.P6K39c').eq(6).text();  
     let primaryExchange = $('.P6K39c').eq(7).text();
+
     let cdpClimateChangeScore = $('.P6K39c').eq(8).text();
+
+    if (cdpClimateChangeScore.length >3){
+        cdpClimateChangeScore = 'Not provided'
+    }
     let about = $('.bLLb2d').text()
 
 
